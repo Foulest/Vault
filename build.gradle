@@ -47,7 +47,7 @@ dependencies {
     // Updated from version 1.13.1-R0.1-SNAPSHOT to 1.20.3-R0.1-SNAPSHOT
     // Note: Keep the version at 1.20.3-R0.1-SNAPSHOT for Java 8 compatibility
     // https://hub.spigotmc.org/nexus/content/repositories/snapshots
-    compileOnly group: 'org.spigotmc', name: 'spigot-api', version: '1.20.3-R0.1-SNAPSHOT'
+    compileOnly group: 'org.spigotmc', name: 'spigot-api', version: '1.21-R0.1-SNAPSHOT'
 
     // JetBrains Annotations - for code inspection and documentation
     // https://mvnrepository.com/artifact/org.jetbrains/annotations
