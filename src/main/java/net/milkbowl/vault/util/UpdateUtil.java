@@ -50,8 +50,7 @@ public class UpdateUtil {
      */
     public static void checkForUpdates() {
         Vault plugin = Vault.getInstance();
-
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+        Runnable task = () -> {
             @Nullable String latestVersion = getLatestReleaseVersion();
             @NotNull String currentVersion = plugin.getDescription().getVersion();
 
@@ -65,7 +64,14 @@ public class UpdateUtil {
             } else {
                 MessageUtil.log(Level.WARNING, "Failed to fetch the latest release version.");
             }
-        });
+        };
+
+        try {
+            Bukkit.getScheduler().runTaskAsynchronously(plugin, task);
+        } catch (UnsupportedOperationException ex) {
+            // Fallback for Folia-like servers that do not support the legacy scheduler.
+            task.run();
+        }
     }
 
     /**

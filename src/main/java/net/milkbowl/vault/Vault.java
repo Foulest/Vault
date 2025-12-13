@@ -31,6 +31,7 @@ import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 
 /**
@@ -66,16 +67,28 @@ public class Vault extends JavaPlugin {
         loadCommands(new VaultCmd());
 
         // Schedules the update checker.
-        Bukkit.getScheduler().runTaskLater(this, UpdateUtil::checkForUpdates, 20L);
+        scheduleUpdateCheck();
 
         MessageUtil.log(Level.INFO, "Loaded successfully.");
     }
 
     @Override
     public void onDisable() {
-        // Removes all service registrations.
         getServer().getServicesManager().unregisterAll(this);
-        Bukkit.getScheduler().cancelTasks(this);
+        try {
+            Bukkit.getScheduler().cancelTasks(this);
+        } catch (UnsupportedOperationException ex) {
+            MessageUtil.log(Level.WARNING, "Scheduler unavailable; skipping task cancellation (is this a Folia-style server?)");
+        }
+    }
+
+    private void scheduleUpdateCheck() {
+        try {
+            Bukkit.getScheduler().runTaskLater(this, UpdateUtil::checkForUpdates, 20L);
+        } catch (UnsupportedOperationException ex) {
+            MessageUtil.log(Level.WARNING, "Legacy scheduler unavailable; running update check asynchronously.");
+            CompletableFuture.runAsync(UpdateUtil::checkForUpdates);
+        }
     }
 
     /**
