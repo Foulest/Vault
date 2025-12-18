@@ -74,14 +74,22 @@ public class Vault extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        // Removes all service registrations.
         getServer().getServicesManager().unregisterAll(this);
+
+        // Cancels all scheduled tasks.
         try {
             Bukkit.getScheduler().cancelTasks(this);
         } catch (UnsupportedOperationException ex) {
-            MessageUtil.log(Level.WARNING, "Scheduler unavailable; skipping task cancellation (is this a Folia-style server?)");
+            MessageUtil.log(Level.WARNING, "Bukkit scheduler unavailable; skipping task cancellation (is this a Folia-style server?)");
         }
     }
 
+    /**
+     * Schedules an update check for the plugin.
+     *
+     * @see UpdateUtil
+     */
     private void scheduleUpdateCheck() {
         try {
             Bukkit.getScheduler().runTaskLater(this, UpdateUtil::checkForUpdates, 20L);

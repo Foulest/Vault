@@ -30,6 +30,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -50,6 +51,7 @@ public class UpdateUtil {
      */
     public static void checkForUpdates() {
         Vault plugin = Vault.getInstance();
+
         Runnable task = () -> {
             @Nullable String latestVersion = getLatestReleaseVersion();
             @NotNull String currentVersion = plugin.getDescription().getVersion();
@@ -69,8 +71,8 @@ public class UpdateUtil {
         try {
             Bukkit.getScheduler().runTaskAsynchronously(plugin, task);
         } catch (UnsupportedOperationException ex) {
-            // Fallback for Folia-like servers that do not support the legacy scheduler.
-            task.run();
+            MessageUtil.log(Level.WARNING, "Legacy scheduler unavailable; running update check asynchronously.");
+            CompletableFuture.runAsync(task);
         }
     }
 
