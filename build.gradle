@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'net.milkbowl'
-version = '2.4.9'
+version = '2.5.0'
 description = project.name
 
 // Set the project's language level
