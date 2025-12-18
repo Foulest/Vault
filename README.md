@@ -3,7 +3,6 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![CodeQL](https://github.com/Foulest/Vault/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/Foulest/Vault/actions/workflows/github-code-scanning/codeql)
 [![Downloads](https://img.shields.io/github/downloads/Foulest/Vault/total.svg)](https://github.com/Foulest/Vault/releases)
-[![JitPack Badge](https://jitpack.io/v/Foulest/Vault.svg)](https://jitpack.io/#Foulest/Vault)
 
 **Vault** is a permissions, chat, & economy API to give plugins easy hooks into.
 
