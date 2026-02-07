@@ -11,7 +11,7 @@
 >
 > All credit for the original project goes to the **[MilkBowl](https://github.com/MilkBowl)** team.
 
-![Vault Banner](https://i.imgur.com/d675jSG.png)
+![Vault Banner](https://i.imgur.com/A3AyeFT.png)
 
 ## Changes Made
 
