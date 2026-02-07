@@ -11,6 +11,8 @@
 >
 > All credit for the original project goes to the **[MilkBowl](https://github.com/MilkBowl)** team.
 
+![Vault Banner](https://i.imgur.com/d675jSG.png)
+
 ## Changes Made
 
 - Includes all features of the original Vault project *(version 1.7.3)*
@@ -28,6 +30,8 @@
 2. Open a command prompt/terminal to the repository directory.
 3. Run `gradlew shadowJar` on Windows, or `./gradlew shadowJar` on macOS or Linux.
 4. The built `Vault-X.X.X.jar` file will be in the `build/libs` folder.
+
+Need to use it in your repository as a dependency? [**Click here!**](https://jitpack.io/#Foulest/Vault)
 
 ## Download and Run
 
